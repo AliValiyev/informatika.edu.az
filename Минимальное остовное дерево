@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdio>
+#include <queue>
+#include <vector>
+using namespace std;
+const int N=20009;
+priority_queue< pair< int, int> > q;
+bool mark[N];
+vector< pair< int, int > > graph[N];
+pair<int,int> p1;
+int main()
+{
+    int k,i,j,n,m,b,c,d,e,f;
+    scanf("%d%d",&n,&m);
+    for(i=1;i<=m;i++)
+    {
+        scanf("%d%d%d",&b,&c,&d);
+        graph[b].push_back(make_pair(c,d));
+        graph[c].push_back(make_pair(b,d));
+    }
+    for(i=0;i<graph[1].size();i++)
+    {
+        q.push(make_pair(-graph[1][i].second,graph[1][i].first));
+         
+    }
+    mark[1]=true;
+    long long ans=0;
+    for(k=1;k<n;k++)
+    {
+        p1=q.top();
+        while(mark[p1.second]==true)
+        {
+            q.pop();
+            p1=q.top();
+        }
+        ans=ans-p1.first;
+        mark[p1.second]=true;
+        for(i=0;i<graph[p1.second].size();i++)
+            if(mark[ graph[p1.second][i].first]==false)
+            {
+                q.push(make_pair(-graph[p1.second][i].second,graph[p1.second][i].first));
+            }
+    }
+    printf("%lld",ans);
+    return 0;
+}
