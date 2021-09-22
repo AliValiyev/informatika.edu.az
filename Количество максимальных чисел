@@ -1,0 +1,18 @@
+#include <iostream>
+#include <algorithm>
+  
+using namespace std;
+  
+int main()
+{ long long  a[1000000],b,i,n=0,max1=1,max2=1;
+while(cin>>b)
+{a[n]=b;n++;}
+sort(a,a+n);
+for(i=n-2;i>=0;i--)
+{if(a[i]==a[i+1])max1++;
+else break;}
+for(i=n-2-max1;i>=0;i--)
+{if(a[i]==a[i+1])max2++;
+else break;}
+cout<<max1<<" "<<max2;
+return 0;}
