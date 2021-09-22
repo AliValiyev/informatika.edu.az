@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+   
+int main()
+{ char a1[100000];int  na=0,b,c,a,n,i,p,t,s=1,s1=1,min,max;
+cin>>a>>b;
+n=a;
+while(n!=0){c=n%10;a1[na]=c;n=n/10;na++;}
+for(t=0;t<b-1;t++)
+{int p=0;
+for(i=0;i<na;i++)
+{ int q=a1[i]*a+p;
+a1[i]=q%10;p=q/10;}
+while(p!=0)
+{a1[na++]=p%10;
+p=p/10;}}
+sort(a1,a1+na);
+for(i=1;i<na;i++)
+{if(a1[i]==a1[i-1])s++;
+else break;}min=a1[0];max=s;
+for(i=s-1;i<na;i++)
+{if(a1[i]==a1[i-1])s1++;
+if(s1>max){max=s1;min=a1[i];}
+if(a1[i]!=a1[i-1])s1=1;}
+cout<<min<<" "<<max;
+    return 0;
+}
