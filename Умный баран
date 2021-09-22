@@ -1,0 +1,73 @@
+#include <iostream>
+#include <utility>
+#include <vector>
+#include <set>
+#include <climits>
+using namespace std;
+    
+struct grid {
+  vector<bool> linearGrid;
+  int w, h;
+  bool allowDiagonal = false;
+  void init(int width, int height) { linearGrid = vector<bool>(width*height, true); w = width; h = height; };
+  void set(int x, int y, bool nv) { linearGrid.at(y * w + x) = nv; };
+  bool get(int x, int y) { return linearGrid[y * w + x]; };
+  vector<int> getNeighbors(int coord) {
+    vector<int> res;
+    int mx = coord % w, my = coord / w;
+        
+    // normal
+    if(mx > 0) res.push_back(coord-1);
+    if(mx < w-1) res.push_back(coord+1);
+    if(my > 0) res.push_back(coord-w);
+    if(my < h-1) res.push_back(coord+w);
+        
+    // diagonal
+    if(allowDiagonal){
+      if(mx > 0 && my > 0) res.push_back(coord-w-1); // left  - top
+      if(mx < w-1 && my>0) res.push_back(coord-w+1); // right - top
+      if(mx > 0 && my<h-1) res.push_back(coord+w-1); // left  - bottom
+      if(mx<w-1 && my<h-1) res.push_back(coord+w+1); // right - bottom
+    }
+    return res;
+  };
+};
+        
+int dijkstra(grid myGrid, int source, int target) {
+  vector<int> min_distance(myGrid.linearGrid.size(), INT_MAX);
+  min_distance[ source ] = 0;
+  set< pair<int,int> > active_vertices;
+  active_vertices.insert( {0,source} );
+  while (!active_vertices.empty()) {
+    int where = active_vertices.begin()->second;
+    if (where == target) return min_distance[where];
+    active_vertices.erase( active_vertices.begin() );
+    vector<int> tos = myGrid.getNeighbors(where);
+    for(vector<int>::iterator to = tos.begin(); to != tos.end(); ++to) {
+      if(!myGrid.linearGrid.at(*to)) continue;
+      if (min_distance[*to] > min_distance[where] + 1) {
+        active_vertices.erase( { min_distance[*to], *to } );
+        min_distance[*to] = min_distance[where] + 1;
+        active_vertices.insert( { min_distance[*to], *to } );
+      }
+    }
+  }
+  return INT_MAX;
+}
+    
+int main(){
+  grid m;
+  m.allowDiagonal = true;
+      
+  int mw, mh;
+  cin >> mh >> mw;
+  m.init(mw,mh);
+  for(int h = 0; h < mh; h++){
+  for(int w = 0; w < mw; w++){
+    bool now;
+    cin >> now;
+    m.set(w,h,!now);
+  }
+  }
+  cout << dijkstra(m, (mh-1)*mw,mw-1);
+}
