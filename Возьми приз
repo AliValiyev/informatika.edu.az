@@ -1,0 +1,16 @@
+#include <iostream>
+#include <cmath>
+    
+using namespace std;
+    
+int main()
+{ long long x,y,a,b,k1,k2,min=999999999;
+cin>>x>>y>>a>>b;b=-b;y=y-x;
+for(k1=0;k1<=abs(y);k1++)
+{ for(k2=0;k2<=abs(y);k2++)
+    if(k1*a+k2*b==y)if(k1+k2<min)min=k1+k2;
+}
+if(min==999999999)cout<<-1;
+    else cout<<min<<endl;
+    return 0;
+}
