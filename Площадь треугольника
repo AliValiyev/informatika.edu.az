@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cmath>
+#include <cstdio>
+using namespace std;
+ 
+int main()
+{float ax,ay,bx,by,cx,cy,s;
+cin>>ax>>ay>>bx>>by>>cx>>cy;
+s=abs(ax*by-bx*ay+bx*cy-cx*by+cx*ay-ax*cy)/2;
+printf("%.1f",s);
+    return 0;
+}
+ 
+ 
