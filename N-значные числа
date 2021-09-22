@@ -1,0 +1,20 @@
+#include <iostream>
+  
+using namespace std;
+  
+int main()
+{ int a,b,c,n,s=0,e[3],i,s1,j,f=0;
+cin>>n>>a>>b>>c;
+if(a>0 && a<10){e[s]=a;s++;}
+if(b>0 && a<10){e[s]=b;s++;}
+if(c>0 && a<10){e[s]=c;s++;}
+for(i=0;i<s;i++)
+{s1=0;
+for(j=i;j>=0;j--)
+{ if(e[i]==e[j]) s1++;}
+if(s1==1) f++;}
+cout<<f;
+if(f!=0){
+for(i=0;i<n-1;i++)
+cout<<0;}
+return 0;
