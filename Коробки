@@ -1,0 +1,27 @@
+#include <iostream>
+#include <math.h>
+#include <stdio.h>
+using namespace std;
+  
+int NSD(int a, int b) {
+   if (b == 0) return a;
+   return NSD(b, a % b);
+ }
+  
+int main ()
+{
+   int a,b,t;
+   while (scanf("%d %d",&a, &b) == 2)
+   {
+     int k=0;
+     t=(a+b)/NSD(a,b);
+     while (t%2==0)
+     {
+           t/=2;
+           k++;
+     }
+     if (t>1) k=-1;
+     cout << k << endl;
+   }
+   return 0;
+}
