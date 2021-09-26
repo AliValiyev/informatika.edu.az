@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+  
+#define FOR(i,a,b) for(int i=a;i<b;i++)
+#define REP(i,b) FOR(i,0,b)
+#define MP make_pair
+#define CLAMP(x,a,b) max(a,min(x,b))
+     
+using namespace std;
+     
+typedef long long ll;
+typedef pair<int,int> pii;
+  
+int read(){
+    int i;
+    scanf("%d",&i);
+    return i;
+}
+  
+struct Pos{
+    ll x,y;
+    Pos(){}
+    Pos(ll x,ll y):x(x),y(y){}
+};
+  
+bool cmp(Pos a,Pos b){
+    return b.x*a.y-b.y*a.x>0;
+}
+  
+pii ps[4][60000];
+ll n,r;
+  
+void Add(pii* dst,int& c,Pos d,Pos mn,Pos mx){
+    if(mn.y<=0&&mx.y<0)
+        return;
+    if(mn.y<0&&mx.y<=0)
+        return;
+    if(mn.y==0&&mn.y==0&&mx.y<mn.y)
+        return;
+    ll h=n-d.y;
+    const ll bias=1000000;
+    if(mn.y>0)
+        dst[c++]=MP((int)CLAMP((d.x+(mn.x*h-1+mn.y*bias)/mn.y-bias+1),0LL,ll(n)),1);
+    else
+        dst[c++]=MP(0,1);
+    if(mx.y>0)
+        dst[c++]=MP((int)CLAMP((d.x+(mx.x*h+mx.y*bias)/mx.y-bias+1),0LL,ll(n)),-1);
+    else
+        dst[c++]=MP(n,-1);
+}
+  
+int s[4];
+     
+int main(){
+    n=read(),r=read();
+    Pos don;
+    don.x=read(),don.y=read();
+    REP(i,r){
+        int p=read();
+        Pos mn,mx;
+        mn.x=mx.x=read()-don.x;
+        mn.y=mx.y=read()-don.y;
+        REP(_,p-1){
+            Pos g;
+            g.x=read()-don.x,g.y=read()-don.y;
+            if(cmp(g,mn))
+                mn=g;
+            if(cmp(mx,g))
+                mx=g;
+        }
+        Add(ps[0],s[0],don,mn,mx);
+        Add(ps[1],s[1],Pos(n-don.y,don.x),Pos(-mn.y,mn.x),Pos(-mx.y,mx.x));
+        Add(ps[2],s[2],Pos(n-don.x,n-don.y),Pos(-mn.x,-mn.y),Pos(-mx.x,-mx.y));
+        Add(ps[3],s[3],Pos(don.y,n-don.x),Pos(mn.y,-mn.x),Pos(mx.y,-mx.x));
+    }
+    int ans=0;
+    REP(k,4){
+ 
+        sort(ps[k],ps[k]+s[k]);
+        int last=0,g=0;
+        REP(i,s[k]){
+         
+            if(g==0)
+                ans+=ps[k][i].first-last;
+            g+=ps[k][i].second;
+            last=ps[k][i].first;
+        }
+        assert(g==0);
+        ans+=n-last;
+    }
+    printf("%d\n",ans);
+}
+      
