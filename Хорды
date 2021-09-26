@@ -1,0 +1,120 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <algorithm>
+ 
+using namespace std;
+ 
+struct node
+{
+ double key;
+ int n;
+ node *left, *right;
+ node(double x) {key=x;left=right=NULL;}
+};
+ 
+typedef node* bst; //bst - binary search tree
+ 
+void RightRotate(bst &root)
+{  bst x;
+   x=root->left; root->left=x->right; x->right=root;
+   root->n = (root->left!=NULL ? root->left->n : 0) + (root->right!=NULL ? root->right->n : 0) + 1;
+   x->n = (x->left!=NULL ? x->left->n : 0) + (x->right!=NULL ? x->right->n : 0) + 1;
+   root=x;
+}
+ 
+void LeftRotate(bst &root)
+{  bst x;
+   x=root->right; root->right=x->left; x->left=root;
+   root->n = (root->left!=NULL ? root->left->n : 0) + (root->right!=NULL ? root->right->n : 0) + 1;
+   x->n = (x->left!=NULL ? x->left->n : 0) + (x->right!=NULL ? x->right->n : 0) + 1;
+   root=x;
+}
+ 
+int insert_rec(bst &root, double k, int level=0)
+{ if (!root) }
+    root=new node(k);
+    root->n=1;
+ 
+    int rcnt = (rand() % (level + 1))/10;
+ 
+    return rcnt;
+  }
+ 
+  int rcnt;
+  if (k<root->key) {
+     rcnt = insert_rec(root->left,k,level+1);
+     root->n++;
+     if (rcnt>0) RightRotate(root);
+  }
+  else {
+     rcnt = insert_rec(root->right,k,level+1);
+     root->n++;
+     if (rcnt>0) LeftRotate(root);
+  }
+ 
+  rcnt--;
+  return rcnt;
+}
+ 
+ 
+const int NMAX=30000;
+struct Chord {
+  double a,b;
+  bool operator < (const Chord &r) const {
+    return (a<r.a || a==r.a && b<r.b);
+  }
+};
+Chord chords[NMAX];
+bst tree = NULL;
+ 
+int main(void) {
+  
+  int n;
+  cin >> n;
+  for (int i=0; i<n; i++) {
+    cin >> chords[i].a >> chords[i].b;
+    if (chords[i].a > chords[i].b) {
+      double t = chords[i].a; chords[i].a = chords[i].b; chords[i].b = t;
+    }
+  }
+  sort(chords,chords+n);
+  insert_rec(tree,chords[0].b);
+ 
+  int cnt = n+1;
+ 
+  for(int i=1; i<n; i++) {
+    int cnt1=0;
+    node *r = tree;
+    while (r!=NULL) {
+      if (chords[i].a < r->key) r=r->left; 
+      else {
+        cnt1++; 
+        if (r->left!=NULL) cnt1+=r->left->n;
+        r=r->right;
+      }
+    }
+ 
+    int cnt2=0;
+    r=tree;
+    while (r!=NULL) {
+      if (chords[i].b > r->key) r=r->right;
+      else {
+        cnt2++; 
+        if (r->right!=NULL) cnt2+=r->right->n;
+        r=r->left;
+      }
+    }
+ 
+    cnt += (i-cnt1-cnt2);
+ 
+    insert_rec(tree, chords[i].b);
+ 
+  }
+ 
+  cout << cnt << endl;
+ 
+  return 0;
+}
+        
