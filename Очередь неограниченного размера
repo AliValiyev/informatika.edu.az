@@ -1,0 +1,102 @@
+#include <iostream>
+#include <string>
+#include <exception>
+using namespace std;
+  
+struct node{
+    int value;
+    node *next;
+    node():value(0), next(NULL){}
+    node(int value, node *next)
+    :value(value), next(next){}
+};
+  
+struct _queue{
+    int _size;
+    node *first;
+    node *last;
+    _queue():_size(0), first(NULL), last(NULL){}
+  
+    void push (int v){
+        node *new_node = new node(v, last);
+        if(_size == 0){
+            first = last = new_node;
+        }
+        else{
+            last->next = new_node;
+            last = new_node;
+        }
+        _size++;
+    }
+  
+    void pop(){
+        if (_size > 0){
+            int val = first->value;
+            first = first->next;
+            _size--;
+            cout << val;
+        }
+        else throw 0;
+    }
+  
+    void front(){
+        if (_size > 0) cout << first->value;
+        else throw 0;
+    }
+     
+    int size(){
+        return _size;
+    }
+  
+    void clear(){
+        while (_size > 0){
+            node *new_node = first->next;
+            delete first;
+            first = new_node;
+            _size--;
+        }
+        first = NULL;
+        last = NULL;
+    }
+};
+  
+  
+int main()
+{
+    _queue q;
+    string s;
+    int n;
+    while (cin >> s){
+        if (s == "size"){
+            cout << q.size() << endl;
+        }
+        if (s == "push"){
+            cin >> n;
+            q.push(n);
+            cout << "ok" << endl;
+        }
+        if (s == "pop"){
+            try{
+                q.pop();
+            }
+            catch(int e){cout << "error";}
+            cout << endl;
+        }
+        if (s == "front"){
+            try {
+                q.front();
+            }
+            catch(int e){cout << "error";}
+            cout<<endl;
+        }
+        if (s == "clear"){
+            q.clear();
+            cout << "ok" << endl;
+        }
+        if (s == "exit"){
+            cout << "bye" <<endl;
+            return 0;
+        }
+    }
+    return 0;
+}
