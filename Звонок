@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+   
+using namespace std;
+   
+int main()
+{ char a[20],b[20];long long seconds1=0,seconds2=0,m=0,k=0,na,nb,i,days,hours,minutes,seconds;
+cin>>a;na=strlen(a);
+for(i=na-1;i>=0;i--)
+{if(a[i]==':'){m++;k=0;}
+else if(a[i]!=':' && m==0){seconds1+=(a[i]-48)*(pow(10,k)+0.00001);k++;}
+else if(a[i]!=':' && m==1){seconds1+=(a[i]-48)*(pow(10,k)+0.00001)*60;k++;}
+else if(a[i]!=':' && m==2){seconds1+=(a[i]-48)*(pow(10,k)+0.00001)*3600;k++;}}
+cin>>b;nb=strlen(b);m=0;k=0;
+for(i=nb-1;i>=0;i--)
+{if(b[i]==':'){m++;k=0;}
+else if(b[i]!=':' && m==0){seconds2+=(b[i]-48)*(pow(10,k)+0.00001);k++;}
+else if(b[i]!=':' && m==1){seconds2+=(b[i]-48)*(pow(10,k)+0.00001)*60;k++;}
+else if(b[i]!=':' && m==2){seconds2+=(b[i]-48)*(pow(10,k)+0.00001)*3600;k++;}}
+seconds=seconds1+seconds2;
+days=seconds/86400;if(days>=1)seconds%=86400;
+hours=seconds/3600;if(hours>=1)seconds%=3600;
+minutes=seconds/60;if(minutes>=1)seconds%=60;
+if(hours<10)cout<<"0"<<hours;
+else if(hours>=10)cout<<hours;cout<<":";
+if(minutes<10)cout<<"0"<<minutes;
+else if(minutes>=10)cout<<minutes;cout<<":";
+if(seconds<10)cout<<"0"<<seconds;
+else if(seconds>=10)cout<<seconds;
+if(days>0)cout<<"+"<<days<<" "<<"days";
+else cout<<endl;
+return 0;
+}
+                                  
