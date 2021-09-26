@@ -1,0 +1,12 @@
+#include "bits/stdc++.h"
+ 
+using namespace std;
+int main()
+{int w=0,n,sum=0,temp,i;
+cin>>n;
+for(i=0;i<n*n;i++){
+cin>>temp;
+sum+=temp;}
+cout<<sum/2;
+return 0;
+}
