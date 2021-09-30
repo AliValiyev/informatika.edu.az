@@ -1,0 +1,17 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+int main()
+{ long long  x1,x2,y1,y2,a,b,c,nod;
+cin>>x1>>y1>>x2>>y2;
+a=abs(x2-x1);
+b=abs(y2-y1);
+while(a!=0 && b!=0)
+{if(a>b) a=a%b;
+else b=b%a;
+}nod=a+b;
+c=nod+1;
+    cout << c<< endl;
+    return 0;
+}
