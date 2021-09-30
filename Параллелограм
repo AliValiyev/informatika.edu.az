@@ -1,0 +1,9 @@
+#include <iostream>
+using namespace std;
+int main() {
+   double a,b,c,d;
+   cin>>a>>b>>c>>d;
+   cout<<((a==c && b==d)||(a==b && c==d)||(a==d && c==b)?"YES":"NO");
+   return 0;
+}
+ 
