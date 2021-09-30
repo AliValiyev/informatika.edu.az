@@ -1,0 +1,13 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+ 
+int main()
+{ char s[300];int k,i;
+k=0;
+while(scanf("%s",s)==1)k++;
+  printf("%d\n",k);
+    return 0;
+}
+ 
