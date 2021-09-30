@@ -1,0 +1,20 @@
+#include <cstdlib>
+#include <iostream>
+  
+using namespace std;
+long maxx,a,x,k;
+int main(int argc, char *argv[])
+{   maxx=-2000000000;
+    cin>>x;
+    k=0;
+    while(cin>>a)
+    {   if(a>=0 && k==0)
+        {   if(a-x>maxx)
+             maxx=a-x;
+          
+        }
+        else
+          k=1;
+        x=a;
+                      
+    }
