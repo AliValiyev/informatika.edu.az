@@ -1,0 +1,16 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{ int n,m,i,nod;
+cin>>n>>m;
+while(n!=0 && m!=0)
+{if(n>m)n=n%m;
+else m=m%n;
+}nod=n+m;
+for(i=0;i<nod;i++)
+    cout<<1;
+    cout<<endl;
+    return 0;
+}
