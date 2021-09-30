@@ -1,0 +1,43 @@
+#include "bits/stdc++.h"
+ 
+#define MAX 110
+#define INF 0x3F3F3F3F
+int mas[MAX][MAX], used[MAX], d[MAX], cost[MAX];
+using namespace std;
+void Relax(int i, int j)
+{
+  if (d[i] + mas[i][j] < d[j])
+    d[j] = d[i] + mas[i][j];
+}
+int main()
+{int n,i,m,a,b,w,min,j;
+    scanf("%d",&n);
+for(i = 1; i <= n; i++)
+  scanf("%d",&cost[i]);
+memset(mas,0x3F,sizeof(mas));
+memset(used,0,sizeof(used));
+scanf("%d",&m);
+for(i = 1; i <= m; i++)
+{
+  scanf("%d %d",&a,&b);
+  mas[a][b] = cost[a];
+  mas[b][a] = cost[b];
+}
+memset(d,0x3F,sizeof(d));
+d[1] = 0;
+ 
+for(i = 1; i < n; i++)
+{
+  min = INF; w = -1;
+  for(j = 1; j <= n; j++)
+    if (!used[j] && d[j] < min) {min = d[j]; w = j;}
+  if (w < 0) break;
+  for(j = 1; j <= n; j++)
+    if (!used[j]) Relax(w,j);
+  used[w] = 1;
+}
+ 
+if (d[n] == INF) printf("-1\n");
+else printf("%d\n",d[n]);
+    return 0;
+}
