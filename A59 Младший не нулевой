@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+int main()
+{ int n,m=1,d=0,s=0,q,f;
+while(cin>>n && n!=0)
+{m=1;while(n!=0)
+{q=n%2;
+if(q==1)d=m*q+d;
+m=m*10;
+n=n/2;
+}s=0;
+while(d!=0)
+{ q=d%10;
+if(q==1) break;
+s++;
+d=d/10;
+}
+f=pow(2,s);d=0;
+     cout<<f<<endl;}
+    return 0;
+}
