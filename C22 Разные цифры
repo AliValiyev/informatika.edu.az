@@ -1,0 +1,22 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+ 
+int main()
+{long long k=0,m,n,j,q,i,a[100000],o;
+cin>>o>>n;
+if(o>n)
+     swap(o,n);
+for(i=o;i<=n;i++)
+{m=i;
+for(j=0;j<=110;j++)
+a[j]=0;
+while(m)
+{q=m%10;
+    if(a[q]) break;
+    a[q]++;
+    m=m/10;
+}if(m==0)k++;}
+cout << k<< endl;
+    return 0;
+}
