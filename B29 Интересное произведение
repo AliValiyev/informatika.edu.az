@@ -1,0 +1,19 @@
+#include <iostream>
+#include <set> 
+#include <algorithm>
+using namespace std;
+int main()
+{ int i,j,a,b,c,d,say;
+set<int> mySet; 
+cin>>a>>b>>c>>d;
+if(a>b)
+swap(a,b);
+if(c>d)
+swap(c,d);
+for(i=a; i<=b;i++) 
+for(j=c; j<=d;j++)
+mySet.insert(i*j);
+say=int(mySet.size());
+cout<<say<<endl;
+return 0;
+}
