@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+using namespace std;
+  
+long long Pow(long long x, long long n, long long m)
+{
+  if (n == 0) return 1;
+  if (n % 2 == 0) return Pow((x * x) % m, n / 2, m);
+  return (x * Pow(x, n - 1, m)) % m;
+}
+   
+int main (){int n,i;
+scanf("%d",&n);
+for(i = 1; i < n; i++)
+  printf("%lld ",Pow(i,n-2,n));
+printf("\n");}
+   
+                 
