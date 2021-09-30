@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main()
+{int a,b,a1,d,p=0;;
+ if(!cin) { cout<<"net faila\n"; return -1;}
+ if((cin>>a1)==0){cout<<"malo dannix\n";
+  return -1;};
+ if((cin>>a)==0){cout<<"malo dannix\n";
+  return -1;};
+d=a-a1;
+while(cin>>b)
+{if(b-a!=d){p=1; break;}a=b;}
+if(p==0) cout<<a1<<" "<<d<<endl;
+else cout<<"NO";
+return 0;}
