@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int main()
+{int a,b,c,d,e;
+cin>>a>>b>>c;
+for(d=0;d<=300;d++)
+for(e=0;e<=300;e++)
+if(d*a+e*b==c)
+{cout<<d<<" "<<e<<endl;
+return 0;}
+if(d*a+e*b!=c)
+{cout<<0<<endl;return 0;}
+return 0;}
