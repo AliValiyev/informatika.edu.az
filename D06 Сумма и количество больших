@@ -1,0 +1,13 @@
+#include <iostream>
+  
+using namespace std;
+  
+int main()
+{ int a,k=0,s=0,b;
+cin>>b;
+while(cin>>a)
+{ if(a>b) {k++;s=s+a;}
+b=a;}
+    cout<<s<<" "<<k<<endl;
+    return 0;
+}
