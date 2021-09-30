@@ -1,0 +1,17 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+ 
+int main()
+{ char a[256]={'0/'};
+char s[256]={'0/'}; long long na,i,q=0;
+cin>>s; na=strlen(s);
+for(i=0;i<na;i++) a[i]=s[na-1-i]-48;
+for(i=0;i<na;i++)
+{ q=a[i]+q;}
+if(q%3==0 && q!=0)
+cout<<"YES"<<endl;
+else
+cout<<"NO"<<endl;
+    return 0;
+}
