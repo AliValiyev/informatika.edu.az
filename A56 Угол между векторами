@@ -4,6 +4,7 @@
 Created on Tue Apr 25 19:01:27 2017
 @author: alivaliyev
 """
+
 #include <iostream>
 #include <cmath>
 #include <cstdio>
@@ -19,5 +20,6 @@ if(g>0 && a>0)
 b=f/(g*a);
 s=acos(b);
 printf("%.5f",s);
-return 0;}
+return 0;
+}
   
