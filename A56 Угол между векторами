@@ -1,9 +1,11 @@
+
+  
 //cpp
 /*
 LANG: C++14
 TASK: test
 */
-Created on Tue Apr 25 19:01:27 2017
+//Created on Tue Apr 25 19:01:27 2017
 /****Author: alivaliyev****/
 
 
@@ -27,4 +29,3 @@ s = acos(b);
 printf("%.5f",s);
 return 0;
 }
-  
