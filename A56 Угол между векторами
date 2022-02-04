@@ -1,7 +1,10 @@
-Created on Tue Apr 25 19:01:27 2017
-// Author: alivaliyev
 //cpp
-
+/*
+LANG: C++14
+TASK: test
+*/
+Created on Tue Apr 25 19:01:27 2017
+/****Author: alivaliyev****/
 #include <iostream>
 #include <cmath>
 #include <cstdio>
