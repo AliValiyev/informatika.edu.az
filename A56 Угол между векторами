@@ -1,9 +1,10 @@
-#!/usr/bin/env cpp
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 25 19:01:27 2017
 @author: alivaliyev
-"""
+Created on Tue Apr 25 19:01:27 2017
+
+/** \class TGeoPainter
+\
+
+*/
 
 #include <iostream>
 #include <cmath>
